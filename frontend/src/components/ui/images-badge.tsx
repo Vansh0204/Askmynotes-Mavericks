@@ -90,7 +90,7 @@ export function ImagesBadge({
       formData.append("optional_description", subjectDesc);
 
       try {
-        const response = await fetch("http://localhost:5001/api/upload", {
+        const response = await fetch("http://localhost:5003/api/upload", {
           method: "POST",
           body: formData,
         });
@@ -119,7 +119,9 @@ export function ImagesBadge({
           newSlots[index] = { ...newSlots[index], file: null, isAnalyzing: false };
           setSlots([...newSlots]);
         }
-      } catch {
+      } catch (error) {
+        console.error("Upload error:", error);
+        alert("Network error: Could not reach the server. Please ensure the backend is running on port 5003.");
         newSlots[index] = { ...newSlots[index], file: null, isAnalyzing: false };
         setSlots([...newSlots]);
       }

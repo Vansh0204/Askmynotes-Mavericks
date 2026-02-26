@@ -81,7 +81,7 @@ export default function ChatPage() {
 
     const fetchSessions = useCallback(async () => {
         try {
-            const response = await fetch("http://localhost:5001/api/chat/sessions");
+            const response = await fetch("http://localhost:5003/api/chat/sessions");
             if (response.ok) {
                 const data = await response.json();
                 setSessions(data);
@@ -133,7 +133,7 @@ export default function ChatPage() {
                 ? `Researching specifically about "${selectedTopic}": ${textToSend}`
                 : textToSend;
 
-            const response = await fetch("http://localhost:5001/api/chat", {
+            const response = await fetch("http://localhost:5003/api/chat", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -177,7 +177,7 @@ export default function ChatPage() {
     const deleteSession = async (id: string, e: React.MouseEvent) => {
         e.stopPropagation();
         try {
-            const res = await fetch(`http://localhost:5001/api/chat/sessions/${id}`, { method: "DELETE" });
+            const res = await fetch(`http://localhost:5003/api/chat/sessions/${id}`, { method: "DELETE" });
             if (res.ok) {
                 setSessions(prev => prev.filter(s => s.id !== id));
                 if (activeSession?.id === id) setActiveSession(null);
