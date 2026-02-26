@@ -53,10 +53,12 @@ class ChatStore {
         return this.chats.find(c => c.id === id);
     }
 
+    getChatBySubject(subject: string) {
+        return this.chats.find(c => c.subject.toLowerCase() === subject.toLowerCase());
+    }
+
     addChat(sessionData: Omit<ChatSession, "id" | "created_at">) {
-        if (this.chats.length >= this.MAX_CHATS) {
-            throw new Error("Maximum of 3 chats allowed. Please delete an existing chat.");
-        }
+        // Validation moved to controller to allow cumulative updates for existing subjects
         const newChat: ChatSession = {
             ...sessionData,
             id: uuidv4(),
@@ -65,6 +67,16 @@ class ChatStore {
         this.chats.push(newChat);
         this.saveChats();
         return newChat;
+    }
+
+    updateChat(id: string, updates: Partial<ChatSession>) {
+        const index = this.chats.findIndex(c => c.id === id);
+        if (index !== -1) {
+            this.chats[index] = { ...this.chats[index], ...updates };
+            this.saveChats();
+            return this.chats[index];
+        }
+        return null;
     }
 
     deleteChat(id: string) {
