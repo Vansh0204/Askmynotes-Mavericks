@@ -32,6 +32,7 @@ interface ImagesBadgeProps {
  */
 interface SlotState {
   file: File | null;
+  subject: string;
   isAnalyzing: boolean;
   citations: string[];
 }
@@ -54,16 +55,18 @@ export function ImagesBadge({
   const [subjectName, setSubjectName] = useState("");
   const [subjectDesc, setSubjectDesc] = useState("");
   const [slots, setSlots] = useState<SlotState[]>([
-    { file: null, isAnalyzing: false, citations: [] },
-    { file: null, isAnalyzing: false, citations: [] },
-    { file: null, isAnalyzing: false, citations: [] },
+    { file: null, subject: "", isAnalyzing: false, citations: [] },
+    { file: null, subject: "", isAnalyzing: false, citations: [] },
+    { file: null, subject: "", isAnalyzing: false, citations: [] },
   ]);
   const activeSlotRef = React.useRef<number | null>(null);
   const fileInputRef = React.useRef<HTMLInputElement>(null);
 
   const handleSlotClick = (index: number) => {
-    if (slots[index].file) return; // Note already exists
     activeSlotRef.current = index;
+    if (slots[index].subject) {
+      setSubjectName(slots[index].subject);
+    }
     setShowForm(true);
   };
 
@@ -104,6 +107,7 @@ export function ImagesBadge({
 
           newSlots[index] = {
             ...newSlots[index],
+            subject: subjectName,
             isAnalyzing: false,
             citations,
           };
@@ -268,8 +272,9 @@ export function ImagesBadge({
                       </svg>
                     </div>
                     <div>
-                      <p className="font-bold text-indigo-900 truncate max-w-[200px]">{slot.file.name}</p>
-                      <p className="text-[10px] text-indigo-400 font-bold uppercase tracking-wider">Note Uploaded</p>
+                      <p className="font-bold text-indigo-900 truncate max-w-[200px]">{slot.subject || slot.file?.name}</p>
+                      <p className="text-[10px] text-indigo-400 font-bold uppercase tracking-wider">{slot.subject ? "Subject Active" : "Note Active"}</p>
+                      {slot.subject && <p className="text-[8px] text-black/20 mt-1 truncate max-w-[150px]">Latest: {slot.file?.name}</p>}
                     </div>
 
                     {/* Citations Animation */}
