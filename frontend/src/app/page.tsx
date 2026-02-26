@@ -2,117 +2,73 @@
 
 import React from "react";
 import { motion } from "motion/react";
+import Link from "next/link";
 import BubbleMenu from "@/components/BubbleMenu";
 import {
   DoodlePencil,
   DoodleStar,
-  DoodleLightbulb,
   DoodlePaperPlane,
   DoodleBubble,
   DoodleNotebook,
+  DoodleLightbulb,
 } from "@/components/ui/doodle-elements";
 import { ImagesBadge } from "@/components/ui/images-badge";
+
+const COLORS = {
+  red: "#ef4444",
+  blue: "#3b82f6",
+  yellow: "#fbbf24",
+  pink: "#f472b6",
+  green: "#10b981",
+  purple: "#8b5cf6",
+  black: "#1a1825",
+};
 
 const NAV_ITEMS = [
   {
     label: "Home",
-    href: "#",
+    href: "/",
     ariaLabel: "Home",
     rotation: -6,
-    hoverStyles: { bgColor: "#6366f1", textColor: "#ffffff" },
+    hoverStyles: { bgColor: COLORS.blue, textColor: "#ffffff" },
   },
   {
-    label: "Features",
-    href: "#",
-    ariaLabel: "Features",
+    label: "Chat",
+    href: "/chat",
+    ariaLabel: "Chat",
     rotation: 6,
-    hoverStyles: { bgColor: "#8b5cf6", textColor: "#ffffff" },
+    hoverStyles: { bgColor: COLORS.purple, textColor: "#ffffff" },
   },
   {
     label: "About",
     href: "#",
     ariaLabel: "About",
     rotation: -4,
-    hoverStyles: { bgColor: "#ec4899", textColor: "#ffffff" },
+    hoverStyles: { bgColor: COLORS.pink, textColor: "#ffffff" },
   },
   {
-    label: "Contact",
-    href: "#",
-    ariaLabel: "Contact",
+    label: "GitHub",
+    href: "https://github.com",
+    ariaLabel: "GitHub",
     rotation: 8,
-    hoverStyles: { bgColor: "#10b981", textColor: "#ffffff" },
+    hoverStyles: { bgColor: COLORS.green, textColor: "#ffffff" },
   },
 ];
 
 export default function Home() {
   return (
     <div
-      className="relative h-screen w-screen overflow-hidden"
-      style={{
-        fontFamily: "'DM Sans', sans-serif",
-        background: `
-          linear-gradient(160deg,
-            #f5f0e6 0%,
-            #ece5d8 25%,
-            #e8e0d0 50%,
-            #f0e8da 75%,
-            #f5efe4 100%
-          )
-        `,
-      }}
+      className="relative h-screen w-screen overflow-hidden flex flex-col items-center justify-center bg-white"
+      style={{ fontFamily: "'DM Sans', sans-serif" }}
     >
-      {/* ===== Notebook-paper ruled lines ===== */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.035]"
-        style={{
-          backgroundImage: `
-            repeating-linear-gradient(
-              0deg, transparent, transparent 31px,
-              #6366f1 31px, #6366f1 32px
-            )
-          `,
-          backgroundSize: "100% 32px",
-        }}
-      />
-
-      {/* Dotted texture */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.06]"
-        style={{
-          backgroundImage: `radial-gradient(circle, #6366f1 0.5px, transparent 0.5px)`,
-          backgroundSize: "24px 24px",
-        }}
-      />
-
-      {/* Doodly dashed frame */}
-      <svg
-        className="pointer-events-none absolute inset-4 sm:inset-8 z-0"
-        width="calc(100% - 2rem)"
-        height="calc(100% - 2rem)"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        style={{ width: "calc(100% - 2rem)", height: "calc(100% - 2rem)" }}
-      >
-        <rect
-          x="2" y="2"
-          width="calc(100% - 4px)" height="calc(100% - 4px)"
-          rx="24"
-          stroke="#6366f1"
-          strokeWidth="2"
-          strokeDasharray="14 10"
-          opacity="0.1"
-          style={{ width: "calc(100% - 4px)", height: "calc(100% - 4px)" }}
-        />
-      </svg>
-
       {/* ===== BUBBLE MENU NAVBAR ===== */}
       <BubbleMenu
         logo={
           <span
             className="font-bold text-lg tracking-tight"
             style={{
-              fontFamily: "'DM Sans', sans-serif",
-              color: "#2d2b3d",
+              fontFamily: "'DotGothic16', sans-serif",
+              color: COLORS.black,
               fontSize: "1.1rem",
               fontWeight: 700,
             }}
@@ -120,210 +76,279 @@ export default function Home() {
             AskMyNotes
           </span>
         }
+        onMenuClick={() => { }}
+        className=""
+        style={{}}
         items={NAV_ITEMS}
         menuBg="#ffffffee"
-        menuContentColor="#2d2b3d"
+        menuContentColor={COLORS.black}
         useFixedPosition={true}
       />
+      {/* ===== CORNER METADATA (Portfolio Style) ===== */}
+      <div className="absolute top-8 left-8 text-[10px] font-bold tracking-widest uppercase text-red-500">
+        ASKMYNOTES // KNOWLEDGE BASE
+      </div>
+      <div className="absolute top-8 left-1/2 -translate-x-1/2 text-[10px] font-bold tracking-widest uppercase text-red-500 text-center leading-tight">
+        THIS BASE WAS MADE WITH A LOT OF<br />
+        CREATIVITY AND <span className="inline-block border border-red-500 rounded-full px-2">LOVE</span>
+      </div>
+      <div className="absolute top-8 right-8 text-[10px] font-bold tracking-widest uppercase text-red-500">
+        2025 // v1.0
+      </div>
 
-      {/* ===== MAIN CONTENT ===== */}
-      <div className="relative z-10 flex h-full w-full flex-col items-center justify-between px-6 pt-24 pb-12">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 max-w-6xl w-full flex-grow justify-center">
+      <div className="absolute bottom-6 left-8 text-[10px] font-medium tracking-tight text-red-500">
+        askmynotes.ai/beta1
+      </div>
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[10px] font-medium tracking-tight text-red-500">
+        hello@askmynotes.ai
+      </div>
+      <div className="absolute bottom-6 right-8 text-[10px] font-medium tracking-tight text-red-500">
+        @askmynotes.jpg
+      </div>
 
-          {/* LEFT — Title + subtitle */}
+      {/* ===== GEOMETRIC SHAPES (Maximalist Accents) ===== */}
+      {/* Blue Box left */}
+      <motion.div
+        className="absolute w-12 h-8 bg-blue-500 z-0"
+        style={{ top: "20%", left: "12%" }}
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.5 }}
+      />
+      {/* Red Box center bottom */}
+      <motion.div
+        className="absolute w-8 h-12 bg-red-500 z-0"
+        style={{ bottom: "15%", left: "35%" }}
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.7 }}
+      />
+      {/* Yellow Box bottom right */}
+      <motion.div
+        className="absolute w-16 h-10 bg-yellow-400 z-0"
+        style={{ bottom: "10%", right: "25%" }}
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.9 }}
+      />
+      {/* Blue Box right */}
+      <motion.div
+        className="absolute w-10 h-16 bg-blue-600 z-0"
+        style={{ top: "55%", right: "15%" }}
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 1.1 }}
+      />
+      {/* Purple Box top right */}
+      <motion.div
+        className="absolute w-32 h-14 bg-purple-400 z-0 opacity-80"
+        style={{ top: "15%", right: "12%" }}
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 1.3 }}
+      />
+      {/* Pink Box bottom left */}
+      <motion.div
+        className="absolute w-24 h-10 bg-pink-400 z-0 opacity-80"
+        style={{ bottom: "20%", left: "10%" }}
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 1.5 }}
+      />
+
+      {/* ===== MAIN CONTENT (Centered Typography) ===== */}
+      <div className="relative z-10 flex flex-col items-center">
+
+        {/* "Ask." (Pixel) */}
+        <motion.div
+          className="text-black select-none"
+          style={{
+            fontFamily: "'DotGothic16', sans-serif",
+            fontSize: "clamp(4rem, 15vw, 10rem)",
+            lineHeight: 1,
+            letterSpacing: "-0.05em",
+          }}
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          Ask.
+        </motion.div>
+
+        {/* "to my" -> "Learn." (Script) */}
+        <div className="relative flex items-center justify-center -mt-4 mb-2">
           <motion.div
-            className="flex flex-col items-center lg:items-start gap-4 text-center lg:text-left flex-1"
-            initial={{ opacity: 0, x: -50 }}
+            className="text-black select-none mr-24"
+            style={{
+              fontFamily: "'Dancing Script', cursive",
+              fontSize: "clamp(3rem, 8vw, 6rem)",
+              fontStyle: "italic",
+            }}
+            initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ delay: 0.3, duration: 0.8 }}
           >
-            <motion.h1
-              className="font-bold leading-[0.92] select-none"
-              style={{
-                color: "#2d2b3d",
-                fontSize: "clamp(3.5rem, 8vw, 7rem)",
-                fontWeight: 800,
-              }}
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <motion.span
-                className="block"
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.1, duration: 0.7 }}
-              >
-                Ask.
-              </motion.span>
-              <motion.span
-                className="block"
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.25, duration: 0.7 }}
-              >
-                Learn.
-              </motion.span>
-              <motion.span
-                className="block"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7, #c084fc)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
-                initial={{ opacity: 0, scale: 0.7 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{
-                  delay: 0.45,
-                  duration: 0.7,
-                  type: "spring",
-                  stiffness: 200,
-                  damping: 14,
-                }}
-              >
-                Notes
-              </motion.span>
-            </motion.h1>
-
-            <motion.p
-              className="max-w-md"
-              style={{
-                color: "#7c7a8a",
-                fontSize: "clamp(1rem, 1.5vw, 1.2rem)",
-                fontWeight: 400,
-                lineHeight: 1.6,
-              }}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.6 }}
-            >
-              The ultimate space where your notes become interactive. Upload, query, and visualize with AI.
-            </motion.p>
-
-            <motion.div
-              className="flex gap-4 mt-4"
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.0, duration: 0.5 }}
-            >
-              <button
-                className="rounded-2xl px-8 py-3.5 text-sm font-bold text-white shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-indigo-500/20 active:scale-95"
-                style={{
-                  background: "linear-gradient(135deg, #6366f1, #8b5cf6)",
-                  fontFamily: "'DM Sans', sans-serif",
-                }}
-              >
-                Get Started
-              </button>
-              <button
-                className="rounded-2xl px-8 py-3.5 text-sm font-bold transition-all duration-300 hover:scale-105 active:scale-95"
-                style={{
-                  border: "2px solid rgba(99, 102, 241, 0.1)",
-                  color: "#2d2b3d",
-                  background: "rgba(255,255,255,0.4)",
-                  fontFamily: "'DM Sans', sans-serif",
-                }}
-              >
-                The Gallery
-              </button>
-            </motion.div>
+            Learn.
           </motion.div>
 
-          {/* RIGHT — Book + surrounding doodles */}
+          {/* Red Arrow */}
           <motion.div
-            className="relative flex items-center justify-center flex-1"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 mt-2"
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 1, scaleX: 1 }}
+            transition={{ delay: 1.2, duration: 0.5 }}
           >
-            {/* Glow behind book */}
-            <motion.div
-              className="pointer-events-none absolute rounded-full"
-              style={{
-                width: 400,
-                height: 300,
-                background:
-                  "radial-gradient(ellipse, rgba(99, 102, 241, 0.08), transparent 70%)",
-                filter: "blur(40px)",
-              }}
-              animate={{
-                scale: [1, 1.05, 1],
-                opacity: [0.5, 0.8, 0.5],
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-
-            {/* THE BOOK — Floating */}
-            <motion.div
-              className="relative z-10"
-              animate={{ y: [0, -12, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <ImagesBadge
-                coverImage="/bookie.png"
-                images={[
-                  "https://assets.aceternity.com/pro/agenforce-2.webp",
-                  "https://assets.aceternity.com/pro/minimal-3-min.webp",
-                  "https://assets.aceternity.com/pro/bento-4.png",
-                ]}
-                bookSize={{ width: 320, height: 230 }}
-                teaserImageSize={{ width: 120, height: 86 }}
-                hoverImageSize={{ width: 420, height: 300 }}
-                hoverTranslateY={-340}
-                hoverSpread={140}
-              />
-            </motion.div>
-
-            {/* Doodles scattered around the book */}
-            <DoodlePencil size={80} color="#6366f1" delay={0.5} style={{ top: "-10%", left: "-5%", position: "absolute" }} className="floating-doodle" />
-            <DoodleStar size={60} color="#f59e0b" delay={0.7} style={{ top: "-5%", right: "5%", position: "absolute" }} className="floating-doodle" />
-            <DoodleLightbulb size={65} color="#eab308" delay={0.9} style={{ top: "45%", left: "-15%", position: "absolute" }} className="floating-doodle" />
-            <DoodlePaperPlane size={70} color="#8b5cf6" delay={0.6} style={{ top: "-2%", right: "-10%", position: "absolute" }} className="floating-doodle" />
-            <DoodleBubble size={70} color="#ec4899" delay={1.0} style={{ bottom: "-2%", left: "-8%", position: "absolute" }} className="floating-doodle" />
-            <DoodleNotebook size={65} color="#10b981" delay={1.1} style={{ bottom: "-5%", right: "0%", position: "absolute" }} className="floating-doodle" />
+            <svg width="200" height="40" viewBox="0 0 200 40" fill="none">
+              <path d="M0 20H190" stroke={COLORS.red} strokeWidth="4" strokeLinecap="round" />
+              <path d="M180 10L195 20L180 30" stroke={COLORS.red} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           </motion.div>
         </div>
 
-        {/* BOTTOM — Compact Feature Grid */}
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
+        {/* "Notes" (Serif Bold Italic with Oval) */}
+        <div className="relative">
+          <motion.div
+            className="text-black select-none font-bold italic"
+            style={{
+              fontFamily: "'Libre Baskerville', serif",
+              fontSize: "clamp(5rem, 18vw, 12rem)",
+              lineHeight: 0.9,
+            }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+          >
+            Notes
+          </motion.div>
+
+          {/* Red Oval Decoration */}
+          <motion.div
+            className="absolute -inset-x-12 -inset-y-4 border-[1px] border-red-500 rounded-[50%]"
+            initial={{ opacity: 0, pathLength: 0 }}
+            animate={{ opacity: 1, pathLength: 1 }}
+            transition={{ delay: 1.5, duration: 2 }}
+          />
+
+          {/* Small Stars around it */}
+          <div className="absolute -right-8 -bottom-6">
+            <DoodleStar size={40} color={COLORS.purple} delay={2} />
+          </div>
+          <div className="absolute -right-16 top-1/2 transform -translate-y-1/2">
+            <DoodleStar size={30} color={COLORS.yellow} delay={2.2} />
+          </div>
+        </div>
+
+        {/* Subtitle (Subtle and small) */}
+        <motion.p
+          className="mt-12 text-center max-w-sm text-black/60 uppercase tracking-widest font-bold"
+          style={{ fontSize: "10px" }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.8 }}
         >
-          {[
-            { title: "Smart Search", desc: "Find anything in seconds", icon: "🔍" },
-            { title: "Visual Flow", desc: "See your notes fan out", icon: "✨" },
-            { title: "AI Insights", desc: "Summarize & extract keys", icon: "🤖" }
-          ].map((feat, i) => (
-            <div key={i} className="p-5 rounded-2xl bg-white/40 border border-white/60 backdrop-blur-sm hover:border-indigo-200 transition-all text-center">
-              <div className="text-2xl mb-2">{feat.icon}</div>
-              <h3 className="text-base font-bold text-[#2d2b3d] mb-1">{feat.title}</h3>
-              <p className="text-xs text-[#7c7a8a]">{feat.desc}</p>
-            </div>
-          ))}
+          The ultimate space where your notes become interactive. Upload, query, and visualize with AI.
+        </motion.p>
+
+        {/* CTA Buttons */}
+        <motion.div
+          className="flex gap-4 mt-8"
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2.0, duration: 0.5 }}
+        >
+          <Link
+            href="/chat"
+            className="rounded-2xl px-8 py-3.5 text-sm font-bold text-white shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-indigo-500/20 active:scale-95 flex items-center justify-center whitespace-nowrap"
+            style={{
+              background: "linear-gradient(135deg, #ef4444, #f43f5e)",
+              fontFamily: "'DM Sans', sans-serif",
+            }}
+          >
+            Get Started
+          </Link>
+          <button
+            className="rounded-2xl px-8 py-3.5 text-sm font-bold transition-all duration-300 hover:scale-105 active:scale-95 whitespace-nowrap"
+            style={{
+              border: "2px solid rgba(239, 68, 68, 0.1)",
+              color: "#ef4444",
+              background: "rgba(255,255,255,0.4)",
+              fontFamily: "'DM Sans', sans-serif",
+            }}
+          >
+            The Gallery
+          </button>
         </motion.div>
       </div>
 
-      {/* Global CSS for floating animations */}
+      {/* ===== BOOK AT BOTTOM CENTER ===== */}
+      <motion.div
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 z-20"
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 20 }}
+        transition={{ delay: 2, duration: 1, type: "spring", stiffness: 100 }}
+      >
+        <ImagesBadge
+          coverImage="/bookie.png"
+          images={[
+            "https://assets.aceternity.com/pro/agenforce-2.webp",
+            "https://assets.aceternity.com/pro/minimal-3-min.webp",
+            "https://assets.aceternity.com/pro/bento-4.png",
+          ]}
+          bookSize={{ width: 340, height: 240 }}
+          teaserImageSize={{ width: 100, height: 75 }}
+          hoverImageSize={{ width: 380, height: 260 }}
+          hoverTranslateY={-280}
+          hoverSpread={140}
+        />
+      </motion.div>
+
+      {/* ===== DOODLES SCATTERED (Maximalist) ===== */}
+      <div className="absolute top-[25%] left-[20%] pointer-events-none">
+        <DoodleStar size={120} color={COLORS.yellow} delay={0.5} />
+      </div>
+      <div className="absolute top-[15%] right-[25%] pointer-events-none transform rotate-12">
+        <DoodlePaperPlane size={140} color={COLORS.blue} delay={0.8} />
+      </div>
+      <div className="absolute top-[40%] left-[8%] pointer-events-none transform -rotate-12">
+        <DoodlePencil size={110} color={COLORS.red} delay={1} />
+      </div>
+      <div className="absolute top-[50%] right-[5%] pointer-events-none flex flex-col items-center">
+        <DoodleNotebook size={100} color={COLORS.purple} delay={1.2} />
+        <span className="text-[10px] uppercase font-bold text-black/20 mt-2 tracking-tighter">Hand-drawn</span>
+      </div>
+      <div className="absolute bottom-[25%] left-[15%] pointer-events-none">
+        <DoodleLightbulb size={90} color={COLORS.yellow} delay={1.4} />
+      </div>
+      <div className="absolute bottom-[30%] right-[18%] pointer-events-none opacity-40">
+        <DoodleBubble size={120} color={COLORS.pink} delay={1.6} />
+      </div>
+
+      {/* Floating Sparkles (SVG shapes inspired by image) */}
+      <motion.div
+        className="absolute top-[45%] left-[28%] text-blue-500 text-6xl font-thin select-none"
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.5 }}
+      >
+        +
+      </motion.div>
+      <motion.div
+        className="absolute bottom-[35%] right-[32%] text-red-500 text-7xl font-thin select-none"
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.7 }}
+      >
+        *
+      </motion.div>
+
+      {/* Global Style for the thin oval and specific layout tweaks */}
       <style jsx global>{`
-        @keyframes floating {
-          0% { transform: translate(0, 0) rotate(0); }
-          50% { transform: translate(3px, -6px) rotate(1deg); }
-          100% { transform: translate(0, 0) rotate(0); }
+        body {
+          background-color: #ffffff;
         }
-        .floating-doodle {
-          animation: floating 4s ease-in-out infinite;
+        .floating-accent {
+          animation: float 6s ease-in-out infinite;
         }
-        .floating-doodle:nth-child(2n) {
-          animation-duration: 6s;
-          animation-delay: 1s;
+        @keyframes float {
+          0% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-10px) rotate(2deg); }
+          100% { transform: translateY(0px) rotate(0deg); }
         }
       `}</style>
     </div>

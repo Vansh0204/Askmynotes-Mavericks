@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DotGothic16&family=Dancing+Script:wght@400..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -132,4 +132,7 @@
 
 @theme inline {
   --font-dm-sans: 'DM Sans', sans-serif;
+  --font-pixel: 'DotGothic16', sans-serif;
+  --font-script: 'Dancing Script', cursive;
+  --font-serif: 'Libre Baskerville', serif;
 }
