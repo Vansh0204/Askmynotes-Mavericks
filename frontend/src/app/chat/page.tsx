@@ -98,11 +98,19 @@ export default function ChatPage() {
 
     const fetchSessions = useCallback(async () => {
         try {
-            const response = await fetch("http://localhost:5003/api/chat/sessions");
+            const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5003";
+            const response = await fetch(`${apiUrl}/api/chat/sessions`);
             if (response.ok) {
                 const data = await response.json();
                 setSessions(data);
-                if (data.length > 0 && !activeSession) {
+
+                // Keep active session in sync with latest data from server
+                if (activeSession) {
+                    const updatedActive = data.find((s: ChatSession) => s.id === activeSession.id);
+                    if (updatedActive) {
+                        setActiveSession(updatedActive);
+                    }
+                } else if (data.length > 0) {
                     setActiveSession(data[0]);
                 }
             }
