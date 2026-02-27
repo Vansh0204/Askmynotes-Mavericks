@@ -10,8 +10,8 @@ services:
         value: 10000
       - key: GROQ_API_KEY
         sync: false
-      - key: MONGODB_URI
-        sync: false # User will provide their MongoDB Atlas URI
+      - key: DATABASE_URL
+        sync: false # Your MongoDB connection string
       - key: NODE_ENV
         value: production
     # Important: Since we use local file storage (chats.json), 
