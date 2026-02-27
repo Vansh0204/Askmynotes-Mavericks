@@ -136,7 +136,7 @@ export function NotesVisualizer({
         }
       } catch (error) {
         console.error("Upload error:", error);
-        alert("Network error: Could not reach the server. Please ensure the backend is running on port 5003.");
+        alert("Network error: Could not reach the backend server. Please check your connection or wait a moment for the server to wake up.");
         newSlots[index] = { ...newSlots[index], file: null, isAnalyzing: false };
         setSlots([...newSlots]);
       }
