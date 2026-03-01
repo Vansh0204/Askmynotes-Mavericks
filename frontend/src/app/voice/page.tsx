@@ -47,6 +47,7 @@ export default function VoicePage() {
     const [aiResponse, setAiResponse] = useState("");
     const [isProcessing, setIsProcessing] = useState(false);
     const recognitionRef = useRef<SpeechRecognition | null>(null);
+    const transcriptRef = useRef<string>("");
 
     // Map internal states to Persona states
     const personaState: PersonaState = isRecording
@@ -73,7 +74,7 @@ export default function VoicePage() {
         setAiResponse("");
 
         try {
-            const apiUrl ="https://askmynotes-mavericks.onrender.com";
+            const apiUrl = "https://askmynotes-mavericks.onrender.com";
             const response = await fetch(`${apiUrl}/api/chat`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -127,6 +128,7 @@ export default function VoicePage() {
         recognition.onstart = () => {
             setIsRecording(true);
             setTranscript("");
+            transcriptRef.current = "";
             window.speechSynthesis.cancel();
         };
 
@@ -136,12 +138,13 @@ export default function VoicePage() {
                 .map((result) => result.transcript)
                 .join("");
             setTranscript(currentTranscript);
+            transcriptRef.current = currentTranscript;
         };
 
         recognition.onend = () => {
             setIsRecording(false);
-            if (transcript.trim()) {
-                handleSend(transcript);
+            if (transcriptRef.current.trim()) {
+                handleSend(transcriptRef.current);
             }
         };
 
