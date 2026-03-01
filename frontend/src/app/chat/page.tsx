@@ -89,6 +89,7 @@ export default function ChatPage() {
     const [transcript, setTranscript] = useState("");
     const [isProcessing, setIsProcessing] = useState(false);
     const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
+    const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const recognitionRef = useRef<SpeechRecognition | null>(null);
@@ -265,8 +266,27 @@ export default function ChatPage() {
                 <div className="absolute bottom-10 right-10 rotate-12"><DoodlePencil color={COLORS.red} /></div>
             </div>
 
+            {/* Mobile Sidebar Overlay */}
+            {isMobileSidebarOpen && (
+                <div
+                    className="fixed inset-0 bg-black/20 backdrop-blur-sm z-20 lg:hidden"
+                    onClick={() => setIsMobileSidebarOpen(false)}
+                />
+            )}
+
             {/* DASHBOARD SIDEBAR */}
-            <div className="w-80 bg-white border-r border-black/5 flex flex-col hidden lg:flex relative z-10 shadow-xl shadow-black/[0.02]">
+            <div className={cn(
+                "w-80 bg-white border-r border-black/5 flex flex-col absolute inset-y-0 left-0 z-30 transform transition-transform duration-300 lg:relative lg:translate-x-0",
+                isMobileSidebarOpen ? "translate-x-0 shadow-2xl" : "-translate-x-full shadow-none"
+            )}>
+                {/* Mobile Close Button */}
+                <button
+                    onClick={() => setIsMobileSidebarOpen(false)}
+                    className="absolute top-6 right-6 lg:hidden p-2 rounded-xl bg-black/5 hover:bg-black/10text-black"
+                >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M18 6L6 18M6 6l12 12" /></svg>
+                </button>
+
                 <div className="p-8 pb-4">
                     <Link href="/" className="flex items-center gap-3 mb-10 group">
                         <div className="w-9 h-9 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold group-hover:scale-110 transition-transform">
@@ -345,15 +365,23 @@ export default function ChatPage() {
             </div>
 
             {/* MAIN AREA */}
-            <div className="flex-1 flex flex-col relative bg-white">
+            <div className="flex-1 flex flex-col relative bg-white w-full">
                 {activeSession ? (
                     <>
-                        <header className="h-20 border-b border-black/5 flex items-center justify-between px-10 bg-white/80 backdrop-blur-xl z-20">
-                            <div className="flex flex-col">
-                                <h2 className="font-extrabold text-xl text-[#1a1825]">{activeSession.subject}</h2>
-                                <p className="text-[10px] uppercase font-bold text-indigo-500 tracking-widest">
-                                    {selectedTopic ? `Browsing: ${selectedTopic}` : "Full Context Active"}
-                                </p>
+                        <header className="h-20 border-b border-black/5 flex items-center justify-between px-4 sm:px-10 bg-white/80 backdrop-blur-xl z-20">
+                            <div className="flex items-center gap-4">
+                                <button
+                                    onClick={() => setIsMobileSidebarOpen(true)}
+                                    className="lg:hidden p-2 bg-black/5 rounded-xl text-black hover:bg-black/10"
+                                >
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M3 12h18M3 6h18M3 18h18" /></svg>
+                                </button>
+                                <div className="flex flex-col">
+                                    <h2 className="font-extrabold text-lg sm:text-xl text-[#1a1825] truncate max-w-[150px] sm:max-w-xs">{activeSession.subject}</h2>
+                                    <p className="text-[9px] sm:text-[10px] uppercase font-bold text-indigo-500 tracking-widest truncate max-w-[150px] sm:max-w-xs">
+                                        {selectedTopic ? `Browsing: ${selectedTopic}` : "Full Context Active"}
+                                    </p>
+                                </div>
                             </div>
                             <div className="flex items-center gap-4">
                                 <div className="text-right">
@@ -369,7 +397,7 @@ export default function ChatPage() {
                             </div>
                         </header>
 
-                        <div className="flex-1 overflow-y-auto p-10 space-y-8 scroll-smooth relative">
+                        <div className="flex-1 overflow-y-auto p-4 sm:p-10 space-y-6 sm:space-y-8 scroll-smooth relative">
                             {/* Suble Ambient Background for Chat Area */}
                             <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-50">
                                 <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[60%] bg-[#f0f2ff] rounded-full blur-[100px]" />
@@ -387,7 +415,7 @@ export default function ChatPage() {
                                         )}
                                     >
                                         <div className={cn(
-                                            "max-w-[75%] p-6 rounded-3xl text-[15px] leading-relaxed shadow-sm",
+                                            "max-w-[90%] sm:max-w-[75%] p-4 sm:p-6 rounded-3xl text-[14px] sm:text-[15px] leading-relaxed shadow-sm",
                                             m.role === "user"
                                                 ? "bg-indigo-600 text-white rounded-tr-none font-medium"
                                                 : "bg-[#f8f9fb] text-[#2a2a2e] border border-black/5 rounded-tl-none"
@@ -396,7 +424,7 @@ export default function ChatPage() {
                                         </div>
 
                                         {m.role === "assistant" && m.id !== "start" && (
-                                            <div className="mt-4 w-full max-w-[75%] space-y-3">
+                                            <div className="mt-4 w-full max-w-[90%] sm:max-w-[75%] space-y-3">
                                                 {/* Confidence & Evidence */}
                                                 <div className="flex items-center gap-4">
                                                     <div className="flex-1 bg-black/5 h-[1px]" />
@@ -440,12 +468,12 @@ export default function ChatPage() {
                             <div ref={messagesEndRef} />
                         </div>
 
-                        <div className="p-10 pt-4">
+                        <div className="p-4 sm:p-10 sm:pt-4">
                             {isRecording && (
                                 <motion.div
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    className="max-w-4xl mx-auto mb-4 bg-indigo-600 text-white p-6 rounded-3xl flex items-center justify-between shadow-2xl shadow-indigo-600/30"
+                                    className="max-w-4xl mx-auto mb-4 bg-indigo-600 text-white p-4 sm:p-6 rounded-3xl flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0 shadow-2xl shadow-indigo-600/30"
                                 >
                                     <div className="flex items-center gap-4">
                                         <div className="flex gap-1">

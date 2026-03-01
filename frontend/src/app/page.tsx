@@ -126,17 +126,17 @@ export default function Home() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.9 }}
       />
-      {/* Blue Box right */}
+      {/* Small Box right */}
       <motion.div
-        className="absolute w-10 h-16 bg-blue-600 z-0"
+        className="absolute w-10 h-16 bg-blue-600 z-0 hidden sm:block"
         style={{ top: "55%", right: "15%" }}
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 1.1 }}
       />
-      {/* Purple Box top right */}
+      {/* Small Box top right */}
       <motion.div
-        className="absolute w-32 h-14 bg-purple-400 z-0 opacity-80"
+        className="absolute w-32 h-14 bg-purple-400 z-0 opacity-80 hidden sm:block"
         style={{ top: "15%", right: "12%" }}
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -144,7 +144,7 @@ export default function Home() {
       />
       {/* Pink Box bottom left */}
       <motion.div
-        className="absolute w-24 h-10 bg-pink-400 z-0 opacity-80"
+        className="absolute w-24 h-10 bg-pink-400 z-0 opacity-80 hidden sm:block"
         style={{ bottom: "20%", left: "10%" }}
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -173,7 +173,7 @@ export default function Home() {
         {/* "to my" -> "Learn." (Script) */}
         <div className="relative flex items-center justify-center -mt-4 mb-2">
           <motion.div
-            className="text-black select-none mr-24"
+            className="text-black select-none mr-12 md:mr-24"
             style={{
               fontFamily: "'Dancing Script', cursive",
               fontSize: "clamp(3rem, 8vw, 6rem)",
@@ -188,7 +188,7 @@ export default function Home() {
 
           {/* Red Arrow */}
           <motion.div
-            className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 mt-2"
+            className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 mt-2 hidden sm:block"
             initial={{ opacity: 0, scaleX: 0 }}
             animate={{ opacity: 1, scaleX: 1 }}
             transition={{ delay: 1.2, duration: 0.5 }}
@@ -246,9 +246,8 @@ export default function Home() {
 
       </div>
 
-      {/* ===== BOOK AT BOTTOM CENTER ===== */}
       <motion.div
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 z-20 group"
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 z-20 group transform scale-75 sm:scale-90 md:scale-100 origin-bottom"
         whileHover="hovered"
         initial={{ opacity: 0, y: 150 }}
         animate={{ opacity: 1, y: 100 }}
@@ -287,35 +286,35 @@ export default function Home() {
       </motion.div>
 
       {/* ===== DOODLES SCATTERED (Maximalist) ===== */}
-      <div className="absolute top-[25%] left-[20%] pointer-events-none">
+      <div className="absolute top-[25%] left-[20%] pointer-events-none hidden md:block">
         <DoodleStar size={120} color={COLORS.yellow} delay={0.5} />
       </div>
-      <div className="absolute top-[15%] right-[25%] pointer-events-none transform rotate-12">
+      <div className="absolute top-[15%] right-[25%] pointer-events-none transform rotate-12 hidden md:block">
         <DoodlePaperPlane size={140} color={COLORS.blue} delay={0.8} />
       </div>
-      <div className="absolute top-[40%] left-[8%] pointer-events-none transform -rotate-12">
+      <div className="absolute top-[40%] left-[8%] pointer-events-none transform -rotate-12 hidden md:block">
         <DoodlePencil size={110} color={COLORS.red} delay={1} />
       </div>
-      <div className="absolute top-[50%] right-[5%] pointer-events-none flex flex-col items-center">
+      <div className="absolute top-[50%] right-[5%] pointer-events-none hidden md:flex flex-col items-center">
         <DoodleNotebook size={100} color={COLORS.purple} delay={1.2} />
         <span className="text-[10px] uppercase font-bold text-black/20 mt-2 tracking-tighter">Hand-drawn</span>
       </div>
-      <div className="absolute bottom-[25%] left-[15%] pointer-events-none">
+      <div className="absolute bottom-[25%] left-[15%] pointer-events-none hidden md:block">
         <DoodleLightbulb size={90} color={COLORS.yellow} delay={1.4} />
       </div>
-      <div className="absolute bottom-[30%] right-[18%] pointer-events-none opacity-40">
+      <div className="absolute bottom-[30%] right-[18%] pointer-events-none opacity-40 hidden md:block">
         <DoodleBubble size={120} color={COLORS.pink} delay={1.6} />
       </div>
 
       {/* Floating Sparkles (SVG shapes inspired by image) */}
       <motion.div
-        className="absolute top-[45%] left-[28%] text-blue-500 text-6xl font-thin select-none"
+        className="absolute top-[45%] left-[28%] text-blue-500 text-6xl font-thin select-none hidden md:block"
         initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.5 }}
       >
         +
       </motion.div>
       <motion.div
-        className="absolute bottom-[35%] right-[32%] text-red-500 text-7xl font-thin select-none"
+        className="absolute bottom-[35%] right-[32%] text-red-500 text-7xl font-thin select-none hidden md:block"
         initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.7 }}
       >
         *

@@ -179,7 +179,7 @@ export default function VoicePage() {
             </div>
 
             {/* Header */}
-            <div className="absolute top-12 left-12 right-12 flex justify-between items-center z-20">
+            <div className="absolute top-6 left-6 right-6 md:top-12 md:left-12 md:right-12 flex justify-between items-center z-20">
                 <Link href="/" className="flex items-center gap-3 group">
                     <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -188,8 +188,8 @@ export default function VoicePage() {
                     </div>
                 </Link>
                 <div className="text-right">
-                    <p className="text-[10px] font-black tracking-[0.4em] uppercase opacity-40">Professor AI // Interactive</p>
-                    <p className="text-lg font-bold text-indigo-400 mt-1">{subjectName}</p>
+                    <p className="text-[9px] sm:text-[10px] font-black tracking-[0.2em] sm:tracking-[0.4em] uppercase opacity-40">Professor AI // Interactive</p>
+                    <p className="text-base sm:text-lg font-bold text-indigo-400 mt-1">{subjectName}</p>
                 </div>
             </div>
 
@@ -211,11 +211,11 @@ export default function VoicePage() {
                     />
 
                     {/* The Persona Element */}
-                    <div className="relative z-10 bg-black/40 rounded-full p-8 backdrop-blur-2xl border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.5)]">
+                    <div className="relative z-10 bg-black/40 rounded-full p-6 sm:p-8 backdrop-blur-2xl border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.5)]">
                         <Persona
                             variant="opal"
                             state={personaState}
-                            className="size-[300px]"
+                            className="size-[220px] sm:size-[260px] md:size-[300px]"
                         />
                     </div>
                 </div>
@@ -231,8 +231,8 @@ export default function VoicePage() {
                                 exit={{ opacity: 0 }}
                                 className="flex flex-col items-center gap-2"
                             >
-                                <span className="text-red-400 text-xs font-black tracking-[0.5em] uppercase">Listening</span>
-                                <p className="text-3xl font-medium tracking-tight text-white/90 italic">
+                                <span className="text-red-400 text-[10px] sm:text-xs font-black tracking-[0.5em] uppercase">Listening</span>
+                                <p className="text-2xl sm:text-3xl font-medium tracking-tight text-white/90 italic px-4">
                                     &ldquo;{transcript || "I'm listening..."}&rdquo;
                                 </p>
                             </motion.div>
@@ -257,7 +257,7 @@ export default function VoicePage() {
                                 animate={{ opacity: 1, y: 0 }}
                                 className="max-w-xl mx-auto"
                             >
-                                <p className="text-2xl font-bold leading-tight text-indigo-100 mb-6 drop-shadow-sm">
+                                <p className="text-xl sm:text-2xl font-bold leading-tight text-indigo-100 mb-6 drop-shadow-sm px-4">
                                     {aiResponse}
                                 </p>
                             </motion.div>
@@ -269,7 +269,7 @@ export default function VoicePage() {
                                 className="flex flex-col items-center gap-1"
                             >
                                 <span className="text-xs font-black tracking-[1em] uppercase">Ready to talk</span>
-                                <p className="text-lg font-medium tracking-widest uppercase opacity-40">Tap the mic and say hello</p>
+                                <p className="text-[15px] sm:text-[18px] font-medium tracking-widest uppercase opacity-40">Tap the mic and say hello</p>
                             </motion.div>
                         )}
                     </AnimatePresence>

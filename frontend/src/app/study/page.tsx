@@ -125,7 +125,7 @@ export default function StudyPage() {
             </div>
 
             {/* Background Doodles and Shapes */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 opacity-[0.03]">
+            <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 opacity-[0.03] hidden md:block">
                 <div className="absolute top-40 left-10 rotate-12"><DoodleNotebook color={COLORS.blue} /></div>
                 <div className="absolute bottom-20 left-40 -rotate-12"><DoodleStar color={COLORS.yellow} /></div>
                 <div className="absolute top-1/2 right-20 rotate-45"><DoodlePaperPlane color={COLORS.pink} /></div>
@@ -134,7 +134,7 @@ export default function StudyPage() {
             </div>
 
             {/* Header */}
-            <header className="h-20 bg-white/70 border-b border-black/5 flex items-center justify-between px-10 sticky top-0 z-50 backdrop-blur-xl transition-all">
+            <header className="h-20 bg-white/70 border-b border-black/5 flex items-center justify-between px-4 sm:px-10 sticky top-0 z-50 backdrop-blur-xl transition-all">
                 <div className="flex items-center gap-6">
                     <Link href="/" className="flex items-center gap-3 group">
                         <div className="w-9 h-9 rounded-xl bg-black flex items-center justify-center text-white font-bold group-hover:bg-indigo-600 transition-colors shadow-lg shadow-black/10">
@@ -157,7 +157,7 @@ export default function StudyPage() {
 
             <main className="max-w-4xl mx-auto mt-12 px-6">
                 {/* Selection Area */}
-                <div className="bg-white p-8 rounded-[2rem] border border-black/5 shadow-sm mb-12">
+                <div className="bg-white p-6 sm:p-8 rounded-3xl sm:rounded-[2rem] border border-black/5 shadow-sm mb-12">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
                             <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-black/30 mb-3 ml-1">1. Choose Subject</label>
@@ -238,11 +238,11 @@ export default function StudyPage() {
 
                             <div className="space-y-10">
                                 {practiceData.mcqs.map((q, idx) => (
-                                    <div key={idx} className="bg-white p-10 rounded-[2.5rem] border border-black/5 shadow-sm overflow-hidden relative">
-                                        <div className="absolute top-0 right-0 p-8">
+                                    <div key={idx} className="bg-white p-6 sm:p-10 rounded-3xl sm:rounded-[2.5rem] border border-black/5 shadow-sm overflow-hidden relative">
+                                        <div className="absolute top-0 right-0 p-6 sm:p-8">
                                             <span className="text-[10px] font-black text-black/10">Q{idx + 1}</span>
                                         </div>
-                                        <p className="text-xl font-bold mb-8 pr-12 leading-relaxed">{renderText(q.question)}</p>
+                                        <p className="text-lg sm:text-xl font-bold mb-6 sm:mb-8 pr-12 leading-relaxed">{renderText(q.question)}</p>
 
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                             {q.options.map((opt, oIdx) => (
