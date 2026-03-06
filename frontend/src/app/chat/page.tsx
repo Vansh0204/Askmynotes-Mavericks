@@ -288,8 +288,9 @@ export default function ChatPage() {
                 </button>
 
                 <div className="p-8 pb-4">
-                    <Link href="/" className="flex items-center gap-3 mb-10 group pl-2">
-                        <img src="/logo.png" alt="Luminary Logo" className="h-9 w-auto" />
+                    <Link href="/" className="flex items-center gap-2.5 mb-10 group pl-2">
+                        <img src="/logo.png" alt="Luminary Logo" className="h-8 w-auto" />
+                        <span className="font-extrabold text-lg text-[#1a1825] tracking-tight">Luminary</span>
                     </Link>
 
                     <div className="space-y-1">

@@ -76,7 +76,10 @@ export default function Home() {
       {/* ===== BUBBLE MENU NAVBAR ===== */}
       <BubbleMenu
         logo={
-          <img src="/logo.png" alt="Luminary Logo" className="h-8 w-auto invert" />
+          <span className="flex items-center gap-2">
+            <img src="/logo.png" alt="Luminary Logo" style={{ height: "28px", width: "auto", objectFit: "contain" }} />
+            <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 800, fontSize: "1rem", color: "#1a1825", letterSpacing: "-0.02em" }}>Luminary</span>
+          </span>
         }
         onMenuClick={() => { }}
         className=""

@@ -231,11 +231,8 @@ export default function BubbleMenu({
           }}
         >
           <span
-            className={['logo-content', 'inline-flex items-center justify-center', 'w-[120px] h-full'].join(' ')}
-            style={{
-              ['--logo-max-height']: '60%',
-              ['--logo-max-width']: '100%'
-            }}
+            className={['logo-content', 'inline-flex items-center justify-center', 'h-full'].join(' ')}
+            style={{ maxWidth: '180px', overflow: 'hidden' }}
           >
             {typeof logo === 'string' ? (
               <img src={logo} alt="Logo" className="bubble-logo max-h-[60%] max-w-full object-contain block" />

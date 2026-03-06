@@ -136,8 +136,9 @@ export default function StudyPage() {
             {/* Header */}
             <header className="h-20 bg-white/70 border-b border-black/5 flex items-center justify-between px-4 sm:px-10 sticky top-0 z-50 backdrop-blur-xl transition-all">
                 <div className="flex items-center gap-6">
-                    <Link href="/" className="flex items-center gap-3 group">
-                        <img src="/logo.png" alt="Luminary Logo" className="h-8 w-auto px-1" />
+                    <Link href="/" className="flex items-center gap-2 group">
+                        <img src="/logo.png" alt="Luminary Logo" className="h-8 w-auto" />
+                        <span className="font-extrabold text-base text-[#1a1825] tracking-tight">Luminary</span>
                     </Link>
                     <div className="h-6 w-[1px] bg-black/10" />
                     <div className="flex flex-col">
