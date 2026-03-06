@@ -76,17 +76,7 @@ export default function Home() {
       {/* ===== BUBBLE MENU NAVBAR ===== */}
       <BubbleMenu
         logo={
-          <span
-            className="font-bold text-lg tracking-tight"
-            style={{
-              fontFamily: "'DotGothic16', sans-serif",
-              color: COLORS.black,
-              fontSize: "1.1rem",
-              fontWeight: 700,
-            }}
-          >
-            AskMyNotes
-          </span>
+          <img src="/logo.png" alt="Luminary Logo" className="h-8 w-auto invert" />
         }
         onMenuClick={() => { }}
         className=""

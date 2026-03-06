@@ -8,8 +8,11 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "AskMyNotes",
-  description: "Upload your notes. Let AI understand them.",
+  title: "Luminary",
+  description: "Illuminate your learning. Upload notes, ask questions, and visualize your knowledge.",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 import { FileProvider } from "@/context/FileContext";

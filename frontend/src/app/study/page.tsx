@@ -137,9 +137,7 @@ export default function StudyPage() {
             <header className="h-20 bg-white/70 border-b border-black/5 flex items-center justify-between px-4 sm:px-10 sticky top-0 z-50 backdrop-blur-xl transition-all">
                 <div className="flex items-center gap-6">
                     <Link href="/" className="flex items-center gap-3 group">
-                        <div className="w-9 h-9 rounded-xl bg-black flex items-center justify-center text-white font-bold group-hover:bg-indigo-600 transition-colors shadow-lg shadow-black/10">
-                            <span style={{ fontFamily: "'DotGothic16', sans-serif" }}>A</span>
-                        </div>
+                        <img src="/logo.png" alt="Luminary Logo" className="h-8 w-auto px-1" />
                     </Link>
                     <div className="h-6 w-[1px] bg-black/10" />
                     <div className="flex flex-col">

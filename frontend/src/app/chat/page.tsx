@@ -288,13 +288,8 @@ export default function ChatPage() {
                 </button>
 
                 <div className="p-8 pb-4">
-                    <Link href="/" className="flex items-center gap-3 mb-10 group">
-                        <div className="w-9 h-9 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold group-hover:scale-110 transition-transform">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-                            </svg>
-                        </div>
-                        <span className="font-bold text-xl tracking-tight text-[#1a1825]">Study Desk</span>
+                    <Link href="/" className="flex items-center gap-3 mb-10 group pl-2">
+                        <img src="/logo.png" alt="Luminary Logo" className="h-9 w-auto" />
                     </Link>
 
                     <div className="space-y-1">

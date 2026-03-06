@@ -181,14 +181,10 @@ export default function VoicePage() {
             {/* Header */}
             <div className="absolute top-6 left-6 right-6 md:top-12 md:left-12 md:right-12 flex justify-between items-center z-20">
                 <Link href="/" className="flex items-center gap-3 group">
-                    <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                            <path d="M19 12H5M12 19l-7-7 7-7" />
-                        </svg>
-                    </div>
+                    <img src="/logo.png" alt="Luminary Logo" className="h-10 w-auto" />
                 </Link>
                 <div className="text-right">
-                    <p className="text-[9px] sm:text-[10px] font-black tracking-[0.2em] sm:tracking-[0.4em] uppercase opacity-40">Professor AI // Interactive</p>
+                    <p className="text-[9px] sm:text-[10px] font-black tracking-[0.2em] sm:tracking-[0.4em] uppercase opacity-40">Luminary AI // Interactive</p>
                     <p className="text-base sm:text-lg font-bold text-indigo-400 mt-1">{subjectName}</p>
                 </div>
             </div>
